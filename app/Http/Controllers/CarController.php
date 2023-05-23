@@ -55,9 +55,9 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        return view('cars.edit', compact('car'));
     }
 
     /**
@@ -67,9 +67,11 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Car $car)
     {
-        //
+        $data = $request->all();
+        return view('cars.index', compact('cars'));
+        $car->update($data);
     }
 
     /**
