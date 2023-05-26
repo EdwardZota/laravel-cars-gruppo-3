@@ -24,7 +24,8 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
+
     }
 
     /**
@@ -35,7 +36,10 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newCar = Car::create($data);
+        return redirect()->route('cars.index');
+
     }
 
     /**
@@ -70,8 +74,9 @@ class CarController extends Controller
     public function update(Request $request, Car $car)
     {
         $data = $request->all();
-        return view('cars.index', compact('cars'));
         $car->update($data);
+        return redirect()->route('cars.index');
+
     }
 
     /**

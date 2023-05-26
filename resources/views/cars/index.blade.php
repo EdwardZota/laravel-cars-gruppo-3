@@ -10,6 +10,7 @@
 <body>
 
     <div class="container">
+    <a href="{{route('cars.create')}}" class="btn btn-warning">Crea</a>
 
         <table class="table">
             <thead>
@@ -30,12 +31,16 @@
                         <td>{{$car->brand}}</td>
                         <td>{{$car->model}}</td>
                         <td>{{$car->price}}</td>
-                        <td>{{$car->cc}}</td>              
+                        <td>{{$car->cc}}</td>    
+                        <td><a href="{{route('cars.edit', ['car'=>$car->id])}}" class="btn btn-warning">Modifica</a></td>   
+       
                        
                     </tr>
+
                 @endforeach
             </tbody>
           </table>
+
 
     </div>
 
