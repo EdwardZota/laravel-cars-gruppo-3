@@ -32,9 +32,18 @@
                         <td>{{$car->model}}</td>
                         <td>{{$car->price}}</td>
                         <td>{{$car->cc}}</td>    
-                        <td><a href="{{route('cars.edit', ['car'=>$car->id])}}" class="btn btn-warning">Modifica</a></td>   
+                         
        
                        
+                        <td class="d-flex">
+                            <a href="{{route('cars.edit', ['car'=>$car->id])}}" class="btn btn-warning me-2">Modifica</a>
+                            <form action="{{route('cars.destroy', ['car' => $car->id])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                        
+                            </form>
+                        </td>   
                     </tr>
 
                 @endforeach
