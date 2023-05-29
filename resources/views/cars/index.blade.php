@@ -20,8 +20,9 @@
                 <th scope="col">Model</th>
                 <th scope="col">Price</th>
                 <th scope="col">cc</th>
+                <th scope="col">Optionals</th>
                 <th scope="col">Azioni</th>
-    
+
               </tr>
             </thead>
             <tbody>
@@ -31,19 +32,28 @@
                         <td>{{$car->brand}}</td>
                         <td>{{$car->model}}</td>
                         <td>{{$car->price}}</td>
-                        <td>{{$car->cc}}</td>    
-                         
-       
-                       
+                        <td>{{$car->cc}}</td>
+                        <td>
+                            @forelse ($car->optionals as $optional)
+                                <span>{{ $optional->name }}</span>
+                                @if (!$loop->last)
+                                    -
+                                @endif
+                            @empty
+                                <span>Nessuna optional</span>
+                            @endforelse
+                        </td>
+
+
                         <td class="d-flex">
                             <a href="{{route('cars.edit', ['car'=>$car->id])}}" class="btn btn-warning me-2">Modifica</a>
                             <form action="{{route('cars.destroy', ['car' => $car->id])}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Elimina</button>
-                        
+
                             </form>
-                        </td>   
+                        </td>
                     </tr>
 
                 @endforeach
@@ -53,7 +63,7 @@
 
     </div>
 
-    
+
 
 </body>
 </html>

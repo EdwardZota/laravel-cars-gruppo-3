@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Optional extends Model
 {
     use HasFactory;
+
+    public function cars(){
+        return $this->belongsToMany(Car::class);
+    }
 }
